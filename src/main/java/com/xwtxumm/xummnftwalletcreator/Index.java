@@ -1,5 +1,10 @@
 package com.xwtxumm.xummnftwalletcreator;
 
+import net.sf.uadetector.ReadableUserAgent;
+import net.sf.uadetector.UserAgentStringParser;
+import net.sf.uadetector.service.UADetectorServiceFactory;
+
+
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -10,20 +15,21 @@ public class Index extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession httpSession = request.getSession();
         if (httpSession.isNew()) {
-            //Create session if it doesn't exist
             httpSession = request.getSession();
             xumm x = new xumm();
-
             httpSession.setAttribute("xumm", x);
-            String result = x.signIn(Facade.signIn);
-            System.out.println(result);
-            String URL = (String) x.getLoginURL(result);
-            response.sendRedirect(URL);
 
+            //Detect If Smartphone / Personal computer
+            UserAgentStringParser parser = UADetectorServiceFactory.getOnlineUpdatingParser();
+            ReadableUserAgent agent = parser.parse(request.getHeader("User-Agent"));
+            x.setDeviceType(agent.getDeviceCategory().getCategory().getName());
+
+            x.processAuthorization();
+            response.sendRedirect(x.getLoginURL_Redirect());
         }else{
             xumm x = (xumm)httpSession.getAttribute("xumm");
+            x.checkAuthorization();
         }
-
 
         PrintWriter out = response.getWriter();
         out.println("<html><body>");

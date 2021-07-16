@@ -3,13 +3,14 @@ package com.xwtxumm.xummnftwalletcreator;
 public interface Facade {
     //////////////
     //Endpoints
-    String URLpostPayload = "https://xumm.app/api/v1/platform/payload";
-    StringBuilder payload_uuid = new StringBuilder("https://xumm.app/api/v1/platform/payload/");
+    String payload_post = "https://xumm.app/api/v1/platform/payload";
+    String payload_uuid = "https://xumm.app/api/v1/platform/payload/";
 
     //////////////
     //JSON String format
-    String signIn = "{\"txjson\":{\"TransactionType\":\"SignIn\"}}";
+    String signIn_Desktop = "{\"options\":{\"submit\":\"true\",\"multisign\":\"false\",\"expire\":\"1440\",\"return_url\":{\"web\":\"http://localhost:8080/XUMM_NFTWalletCreator_war_exploded/\"}},\"txjson\":{\"TransactionType\":\"SignIn\"}}";
+    String signIn_Phone = "{\"options\":{\"submit\":\"true\",\"multisign\":\"false\",\"expire\":\"1440\",\"return_url\":{\"app\":\"http://localhost:8080/XUMM_NFTWalletCreator_war_exploded/\"}},\"txjson\":{\"TransactionType\":\"SignIn\"}}";
 
-    String signIn(String... payload);
-    String payloadStatus(String... uuid);
+    void processAuthorization();
+    void checkAuthorization();
 }
