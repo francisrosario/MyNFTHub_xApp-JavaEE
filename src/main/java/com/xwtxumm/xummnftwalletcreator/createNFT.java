@@ -31,10 +31,7 @@ public class createNFT extends HttpServlet {
 
             x.createNFTWallet(imageByte, nftName, nftAuthor, nftEmail, nftTwitter, nftDescription);
             httpSession.invalidate();
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
-            dispatcher.forward(request, response);
+            response.sendRedirect("/");
         }
-    }
-    public void destroy() {
     }
 }
