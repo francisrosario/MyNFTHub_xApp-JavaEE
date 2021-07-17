@@ -21,6 +21,7 @@ public class xumm implements Facade{
     private String loginURL_Redirect;
     private String signInURL_Device;
 
+    private String payloadDomain;
     private String domainValue = "";
     private String nftName;
     private String nftAuthor;
@@ -34,6 +35,15 @@ public class xumm implements Facade{
 
     private OkHttpClient okHttpClient;
     private JSONObject jsonObject;
+
+
+    public String getPayloadDomain() {
+        return payloadDomain;
+    }
+
+    public void setPayloadDomain(String payloadDomain) {
+        this.payloadDomain = payloadDomain;
+    }
 
     public void setDeviceType(String deviceType) {
         this.deviceType = deviceType;
@@ -147,15 +157,30 @@ public class xumm implements Facade{
     }
     private String createPayload(String json){
         StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        sb.append("\"options\": {");
+        sb.append("\"submit\": \"true\",");
+        sb.append("\"multisign\": \"false\",");
+        sb.append("\"expire\": \"1440\"");
+        sb.append("},");
+        sb.append("\"txjson\":");
+        sb.append(json);
+        sb.append("\"user_token\": \"");
+        sb.append(issued_user_token).append("\"");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private String sbDomainBuilder(String domainValue) {
+        String hex = DatatypeConverter.printHexBinary(domainValue.getBytes());
+        StringBuilder sb = new StringBuilder();
+
         sb.append("{\n" +
-                "     \"options\": {\n" +
-                "          \"submit\": \"true\",\n" +
-                "          \"multisign\": \"false\",\n" +
-                "          \"expire\": \"1440\"\n" +
-                "     },\n" +
-                "     \"user_token\": \""+issued_user_token+"\"," +
-                "     \"txjson\": \""+json+"\"," +
-                "}");
+                "    \"TransactionType\": \"AccountSet\",\n" +
+                "    \"Fee\": \"12\",\n" +
+                "    \"Domain\": \""+hex+"\"," +
+                "    \"SetFlag\": 5\n" +
+                "},");
         return sb.toString();
     }
     private String createHTML(byte[] item, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
@@ -169,8 +194,8 @@ public class xumm implements Facade{
 
         Multihash nftItem = createIPFS(item);
         String Website = "null";
-        String CreatedAt = "https://xrptools-web-dev.herokuapp.com/";
-        String NFTBuilder = "https://github.com/francisrosario/XRPTools-JaveEE";
+        String CreatedAt = "https://xls19d-xumm-dev.herokuapp.com/";
+        String NFTBuilder = "https://github.com/francisrosario/";
 
         String photo = "<div id=\"card\">\n" +
                 "            <img src=\"https://gateway.pinata.cloud/ipfs/"+nftItem+"\" width=\"620\">\n" +
@@ -441,19 +466,6 @@ public class xumm implements Facade{
         return domainValue;
     }
 
-    private String sbDomainBuilder(String domainValue) {
-        String hex = DatatypeConverter.printHexBinary(domainValue.getBytes());
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("{\n" +
-                "    \"TransactionType\": \"AccountSet\",\n" +
-                "    \"Fee\": \"12\",\n" +
-                "    \"Domian\": \""+hex+"\"," +
-                "    \"SetFlag\": 5,\n" +
-                "}");
-        return sb.toString();
-    }
-
     @Override
     public void processAuthorization() {
         try {
@@ -493,8 +505,12 @@ public class xumm implements Facade{
         }
         String JSON = sbDomainBuilder(domainValue);
         createDomainValue(10, Optional.empty(), Optional.empty());
-        String payload = createPayload(JSON);
-        System.out.println(payload);
+        payloadDomain = createPayload(JSON);
+        try {
+            postPayload(payloadDomain);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -8,8 +8,8 @@ public interface Facade {
 
     //////////////
     //JSON String format
-    String signIn_Desktop = "{\"options\":{\"submit\":\"true\",\"multisign\":\"false\",\"expire\":\"1440\",\"return_url\":{\"web\":\"http://localhost:8080/XUMM_NFTWalletCreator_war_exploded/\"}},\"txjson\":{\"TransactionType\":\"SignIn\"}}";
-    String signIn_Phone = "{\"options\":{\"submit\":\"true\",\"multisign\":\"false\",\"expire\":\"1440\",\"return_url\":{\"app\":\"http://localhost:8080/XUMM_NFTWalletCreator_war_exploded/\"}},\"txjson\":{\"TransactionType\":\"SignIn\"}}";
+    String signIn_Desktop = "{\"options\":{\"submit\":\"true\",\"multisign\":\"false\",\"expire\":\"1440\",\"return_url\":{\"web\":\"https://xls19d-xumm-dev.herokuapp.com/\"}},\"txjson\":{\"TransactionType\":\"SignIn\"}}";
+    String signIn_Phone = "{\"options\":{\"submit\":\"true\",\"multisign\":\"false\",\"expire\":\"1440\",\"return_url\":{\"app\":\"https://xls19d-xumm-dev.herokuapp.com/\"}},\"txjson\":{\"TransactionType\":\"SignIn\"}}";
 
     void processAuthorization();
     void checkAuthorization();

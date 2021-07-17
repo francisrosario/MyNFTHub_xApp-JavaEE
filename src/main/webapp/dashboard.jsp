@@ -4,7 +4,7 @@
 %>
 <html lang="en"><head><base href="">
   <meta charset="utf-8">
-  <title>XRP Wallet Tools</title>
+  <title>Standalone NFT Wallet Creator</title>
   <meta name="description" content="Standalone NFT Wallet Creator">
   <meta name="keywords" content="Standalone NFT Wallet Creator">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -700,7 +700,7 @@
             </div>
           </div>
           <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="view/dashboard.jsp" class="d-lg-none">
+            <a href="" class="d-lg-none">
               <img alt="Logo" src="/metronic8/demo1/assets/media/logos/logo-3.svg" class="h-30px">
             </a>
           </div>
@@ -708,7 +708,7 @@
             <div class="d-flex align-items-stretch" id="kt_header_nav"><div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_body', lg: '#kt_header_nav'}" style="">
               <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
                 <div class="menu-item me-lg-1">
-                  <a class="menu-link active py-3" href="view/dashboard.jsp">
+                  <a class="menu-link active py-3" href="">
                     <span class="menu-title">Dashboard</span>
                   </a>
                 </div>
@@ -721,9 +721,9 @@
       <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
           <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack"><div data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
-            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">XRP Wallet Tools Dashboard WIP
+            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Standalone NFT Wallet Creator
               <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
-              <small class="text-muted fs-7 fw-bold my-1 ms-1">#1626454219972</small>
+              <small class="text-muted fs-7 fw-bold my-1 ms-1"><%=session.getCreationTime()%></small>
             </h1>
           </div>
           </div>
@@ -754,7 +754,7 @@
                       <!--end::Svg Icon-->
                       <div class="d-flex flex-column">
                         <h5 class="mb-1">INFO:</h5>
-                        <span>Take note, You need a <b>TESTNET WALLET SEED KEY</b> for the Wallet Seed field.</span>
+                        <span>This webapp will be converted to <b>xapp</b> soon!!! Once you entered all the details needed you'll get a <b>Update Account Settings request</b></span>
                       </div>
                     </div>
                     <form action="createnft.process" method="post" onsubmit="return checkSize(26214400)" novalidate="novalidate" enctype="multipart/form-data">
@@ -789,7 +789,6 @@
             </div>
             <div class="row gy-5 gx-xl-8">
               <div class="col-xxl-12">
-
               </div>
             </div>
           </div>
@@ -798,7 +797,7 @@
           <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
             <div class="text-dark order-2 order-md-1">
               <span class="text-muted fw-bold me-1">2021</span>
-              <a href="view/dashboard.jsp" target="_blank" class="text-gray-800 text-hover-primary">XRP Wallet Tools</a>
+              <a href="" target="_blank" class="text-gray-800 text-hover-primary">Standalone NFT Wallet Creator</a>
             </div>
             <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
               <li class="menu-item">
