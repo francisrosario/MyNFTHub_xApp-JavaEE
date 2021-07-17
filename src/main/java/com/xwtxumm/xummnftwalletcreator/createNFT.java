@@ -31,7 +31,7 @@ public class createNFT extends HttpServlet {
 
             x.createNFTWallet(imageByte, nftName, nftAuthor, nftEmail, nftTwitter, nftDescription);
             httpSession.invalidate();
-            response.sendRedirect("/");
+            response.sendRedirect("https://github.com/francisrosario/NFTWalletCreator_xApp-JavaEE");
         }
     }
 }
