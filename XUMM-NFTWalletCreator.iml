@@ -9,10 +9,6 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-        </sourceRoots>
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
@@ -32,8 +28,6 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -51,5 +45,46 @@
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.10" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20180813" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.uadetector:uadetector-resources:2014.10" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.uadetector:uadetector-core:0.9.22" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.qualitycheck:quality-check:1.3" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:2.0.3" level="project" />
+    <orderEntry type="library" name="Maven: javax.annotation:jsr250-api:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
+    <orderEntry type="library" name="Maven: org.xrpl:xrpl4j-client:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.xrpl:xrpl4j-binary-codec:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.xrpl:xrpl4j-crypto-core:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:29.0-jre" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:failureaccess:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
+    <orderEntry type="library" name="Maven: org.checkerframework:checker-qual:2.11.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotations:2.3.4" level="project" />
+    <orderEntry type="library" name="Maven: com.google.j2objc:j2objc-annotations:1.3" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-core:11.0" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-jackson:11.0" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: org.xrpl:xrpl4j-address-codec:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.xrpl:xrpl4j-keypairs:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15to18:1.66" level="project" />
+    <orderEntry type="library" name="Maven: org.xrpl:xrpl4j-model:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-guava:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.2" level="project" />
+    <orderEntry type="library" name="Maven: com.ripple.cryptoconditions:crypto-conditions:1.0.4" level="project" />
+    <orderEntry type="library" name="Maven: net.i2p.crypto:eddsa:0.3.0" level="project" />
+    <orderEntry type="library" name="Maven: com.ripple.cryptoconditions:jackson-datatype-cryptoconditions:1.0.4" level="project" />
+    <orderEntry type="library" name="Maven: com.github.ipfs:java-ipfs-http-client:1.3.3" level="project" />
+    <orderEntry type="library" name="Maven: com.github.multiformats:java-multiaddr:v1.4.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.ipld:java-cid:v1.3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.multiformats:java-multihash:v1.3.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.multiformats:java-multibase:v1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20200615.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.3" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:1.2.2" level="project" />
   </component>
 </module>
