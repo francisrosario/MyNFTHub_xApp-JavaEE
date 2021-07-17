@@ -163,6 +163,9 @@ public class xumm implements Facade{
         sb.append("\"multisign\": \"false\",");
         sb.append("\"expire\": \"1440\"");
         sb.append("},");
+        sb.append("     \"custom_meta\": {\n" +
+                "          \"instruction\": \"By approving this transaction, Your wallet will be indexed to NFT Wallet Indexer... The Domain changes is provided below including it's base58 hash.\"\n" +
+                "     },");
         sb.append("\"txjson\":");
         sb.append(json);
         sb.append("\"user_token\": \"");
