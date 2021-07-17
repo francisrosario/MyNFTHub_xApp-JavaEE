@@ -4,7 +4,6 @@ import net.sf.uadetector.ReadableUserAgent;
 import net.sf.uadetector.UserAgentStringParser;
 import net.sf.uadetector.service.UADetectorServiceFactory;
 
-
 import java.io.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +15,7 @@ public class doAuthorization extends HttpServlet {
         HttpSession httpSession = request.getSession();
         if (httpSession.isNew()) {
             httpSession = request.getSession();
+            httpSession.setMaxInactiveInterval(180);
             xumm x = new xumm();
             httpSession.setAttribute("xumm", x);
 

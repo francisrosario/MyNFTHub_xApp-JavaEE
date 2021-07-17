@@ -760,15 +760,15 @@
                     <form action="createnft.process" method="post" onsubmit="return checkSize(26214400)" novalidate="novalidate" enctype="multipart/form-data">
                       <div class="mb-10">
                         <label class="form-label">NFT Name:</label>
-                        <input class="form-control form-control-solid" type="text" name="nftName" placeholder="Amazing NFT!">
+                        <input class="form-control form-control-solid" type="text" name="nftName" required placeholder="Amazing NFT!">
                       </div>
                       <div class="mb-10">
                         <label class="form-label">Author Name:</label>
-                        <input class="form-control form-control-solid" type="text" name="nftAuthor" placeholder="Mr.NoOne">
+                        <input class="form-control form-control-solid" type="text" name="nftAuthor" placeholder="Mr.NoOne" required>
                       </div>
                       <div class="mb-10">
                         <label class="form-label">Author Email:</label>
-                        <input class="form-control form-control-solid" placeholder="" type="text" name="nftEmail">
+                        <input class="form-control form-control-solid" placeholder="" type="text" name="nftEmail" required>
                       </div><div class="mb-10">
                       <label class="form-label">Your Twitter:</label>
                       <input class="form-control form-control-solid" placeholder="" type="text" name="nftTwitter">
@@ -777,7 +777,7 @@
                       <input placeholder="" type="text" name="nftDescription" class="form-control form-control-solid">
                     </div>
                       <!--begin::Input group-->
-                      <input type="file" name="file" id="upload" class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary w-100">
+                      <input type="file" name="file" id="upload" required class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary w-100">
                       <br>
                       <!--end::Input group-->
                       <br>

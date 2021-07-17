@@ -8,6 +8,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "createnft.process", value = "/createnft.process")
 @MultipartConfig
@@ -30,6 +31,8 @@ public class createNFT extends HttpServlet {
 
             x.createNFTWallet(imageByte, nftName, nftAuthor, nftEmail, nftTwitter, nftDescription);
             httpSession.invalidate();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+            dispatcher.forward(request, response);
         }
     }
     public void destroy() {
