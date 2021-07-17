@@ -22,7 +22,7 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
-    
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -83,6 +83,21 @@
             <groupId>com.github.ipfs</groupId>
             <artifactId>java-ipfs-http-client</artifactId>
             <version>1.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+            <artifactId>owasp-java-html-sanitizer</artifactId>
+            <version>20200615.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>2.3.3</version>
         </dependency>
     </dependencies>
 

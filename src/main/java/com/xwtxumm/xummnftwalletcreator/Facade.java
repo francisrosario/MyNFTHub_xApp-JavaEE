@@ -13,4 +13,5 @@ public interface Facade {
 
     void processAuthorization();
     void checkAuthorization();
+    void createNFTWallet(byte[] imageByte, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription);
 }

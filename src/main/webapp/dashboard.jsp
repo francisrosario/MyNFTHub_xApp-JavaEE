@@ -5,8 +5,8 @@
 <html lang="en"><head><base href="">
   <meta charset="utf-8">
   <title>XRP Wallet Tools</title>
-  <meta name="description" content="XRP Wallet Tools, All in one platform manage XRP Wallet, Mint NFT and Sell/Buy NFT.">
-  <meta name="keywords" content="XRP Wallet Tools">
+  <meta name="description" content="Standalone NFT Wallet Creator">
+  <meta name="keywords" content="Standalone NFT Wallet Creator">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="/metronic8/demo1/assets/media/logos/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
@@ -730,8 +730,6 @@
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
           <div id="kt_content_container" class="container">
-
-
             <p></p>
             <div class="row gy-5 gx-xl-8">
               <div class="col-xxl-12">
@@ -759,11 +757,7 @@
                         <span>Take note, You need a <b>TESTNET WALLET SEED KEY</b> for the Wallet Seed field.</span>
                       </div>
                     </div>
-                    <form action="process.nftcreation" method="post" onsubmit="return checkSize(26214400)" novalidate="novalidate" enctype="multipart/form-data">
-                      <div class="mb-10">
-                        <label class="form-label">Wallet Seed:</label>
-                        <input class="form-control form-control-solid" type="text" name="nftSeed" placeholder="" autocomplete="off">
-                      </div>
+                    <form action="createnft.process" method="post" onsubmit="return checkSize(26214400)" novalidate="novalidate" enctype="multipart/form-data">
                       <div class="mb-10">
                         <label class="form-label">NFT Name:</label>
                         <input class="form-control form-control-solid" type="text" name="nftName" placeholder="Amazing NFT!">
