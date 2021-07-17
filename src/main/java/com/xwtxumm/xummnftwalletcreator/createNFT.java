@@ -29,7 +29,9 @@ public class createNFT extends HttpServlet {
             String nftDescription = request.getParameter("nftDescription");
 
             x.createNFTWallet(imageByte, nftName, nftAuthor, nftEmail, nftTwitter, nftDescription);
-
+            httpSession.invalidate();
         }
+    }
+    public void destroy() {
     }
 }
