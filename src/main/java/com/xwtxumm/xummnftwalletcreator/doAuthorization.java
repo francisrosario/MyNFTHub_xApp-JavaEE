@@ -6,12 +6,13 @@ import net.sf.uadetector.service.UADetectorServiceFactory;
 
 
 import java.io.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "index", value = "/")
 public class doAuthorization extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession httpSession = request.getSession();
         if (httpSession.isNew()) {
             httpSession = request.getSession();
@@ -28,7 +29,8 @@ public class doAuthorization extends HttpServlet {
         }else{
             xumm x = (xumm)httpSession.getAttribute("xumm");
             x.checkAuthorization();
-            response.sendRedirect("dashboard.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("dashboard.jsp");
+            dispatcher.forward(request, response);
         }
 
         PrintWriter out = response.getWriter();

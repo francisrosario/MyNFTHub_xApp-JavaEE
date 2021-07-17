@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="XUMM-NFTWalletCreator:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="08a6d7a9-a2a2-4f36-9f52-e821bdf04e3a" name="Changes" comment="Initial Files">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/XUMM-NFTWalletCreator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/XUMM-NFTWalletCreator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xwtxumm/xummnftwalletcreator/doAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xwtxumm/xummnftwalletcreator/doAuthorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/classes/META-INF/beans.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/classes/com/xwtxumm/xummnftwalletcreator/Facade.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/classes/com/xwtxumm/xummnftwalletcreator/Index.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/classes/com/xwtxumm/xummnftwalletcreator/payloadResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/classes/com/xwtxumm/xummnftwalletcreator/xumm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/annotations-13.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/jackson-annotations-2.11.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/jackson-core-2.11.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/jackson-databind-2.11.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/json-20180813.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/kotlin-stdlib-1.4.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/kotlin-stdlib-1.4.21.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/kotlin-stdlib-common-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/kotlin-stdlib-common-1.4.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/okhttp-4.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/okhttp-5.0.0-alpha.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/okio-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/lib/okio-2.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/XUMM-NFTWalletCreator-1.0-SNAPSHOT/index1.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xwtxumm/xummnftwalletcreator/Facade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xwtxumm/xummnftwalletcreator/Facade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xwtxumm/xummnftwalletcreator/Index.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xwtxumm/xummnftwalletcreator/xumm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xwtxumm/xummnftwalletcreator/xumm.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="595a92cb-7eee-4f94-9cdc-ef5ff3642530" />
+        <option name="url" value="https://github.com/francisrosario/NFTWalletCreator_xApp-JavaEE.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/xwtxumm/xummnftwalletcreator/xumm.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectId" id="1vMx9GkrqfNAfWUMU4I3RjKFfdG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp" />
+    <property name="ml.local.models.training.notification.expired" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.36206895" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\P5\OneDrive\Desktop\XUMM-NFTWalletCreator\src\main\webapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\P5\OneDrive\Desktop\XUMM-NFTWalletCreator\src\main\webapp" />
+      <recent name="C:\Users\P5\OneDrive\Desktop\XUMM-NFTWalletCreator\src\main\webapp\view" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.50" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.50" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="azul-15">
+      <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="XUMM-NFTWalletCreator:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/XUMM_NFTWalletCreator_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="4b2d8e4f-fb42-4304-a3b7-ec749103d002" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54370" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+        <EnvironmentVariables>
+          <option name="NAME" value="apiKey" />
+          <option name="VALUE" value="b9e304dd-04e9-4156-be0f-3673fce1e43f" />
+          <option name="IS_PREDEFINED" value="false" />
+        </EnvironmentVariables>
+        <EnvironmentVariables>
+          <option name="NAME" value="xApi" />
+          <option name="VALUE" value="e2611061-efde-4e43-84f9-86705b134991" />
+          <option name="IS_PREDEFINED" value="false" />
+        </EnvironmentVariables>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="XUMM-NFTWalletCreator:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="08a6d7a9-a2a2-4f36-9f52-e821bdf04e3a" name="Changes" comment="" />
+      <created>1626385608639</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626385608639</updated>
+      <workItem from="1626385610139" duration="19329000" />
+      <workItem from="1626424222237" duration="4747000" />
+      <workItem from="1626429138421" duration="21934000" />
+      <workItem from="1626452338131" duration="2423000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initial Files">
+      <created>1626431198931</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1626431198931</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add user-agent checking and check authorization">
+      <created>1626449660699</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626449660699</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add web assets">
+      <created>1626452300553</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626452300553</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Files" />
+    <MESSAGE value="Add user-agent checking and check authorization" />
+    <MESSAGE value="Add web assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add web assets" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/XUMM_NFTWalletCreator$Tomcat_9_0_50.ic" NAME="Tomcat 9.0.50 Coverage Results" MODIFIED="1626416807450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
