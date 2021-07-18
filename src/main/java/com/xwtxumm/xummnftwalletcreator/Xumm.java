@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 
-public class xumm implements Facade{
+public class Xumm implements Facade{
     private String uuid;
     private String deviceType;
     private String loginURL_Redirect;

@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <servlet>
-        <servlet-name>doAuthorization</servlet-name>
-        <servlet-class>com.xwtxumm.xummnftwalletcreator.doAuthorization</servlet-class>
+        <servlet-name>AuthenticationController</servlet-name>
+        <servlet-class>com.xwtxumm.xummnftwalletcreator.AuthenticationController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>doAuthorization</servlet-name>
+        <servlet-name>AuthenticationController</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

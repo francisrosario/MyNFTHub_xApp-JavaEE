@@ -1,6 +1,6 @@
-<%@ page import="com.xwtxumm.xummnftwalletcreator.xumm" %>
+<%@ page import="com.xwtxumm.xummnftwalletcreator.Xumm" %>
 <%
-  xumm x = (xumm)session.getAttribute("xumm");
+  Xumm x = (Xumm)session.getAttribute("xumm");
 %>
 <html lang="en"><head><base href="">
   <meta charset="utf-8">

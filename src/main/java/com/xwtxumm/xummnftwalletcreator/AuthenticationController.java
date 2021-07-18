@@ -10,13 +10,13 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-public class doAuthorization extends HttpServlet {
+public class AuthenticationController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession httpSession = request.getSession(false);
         if (httpSession == null || Objects.requireNonNull(httpSession).getAttribute("xumm") == null) {
             httpSession = request.getSession();
             httpSession.setMaxInactiveInterval(180);
-            xumm x = new xumm();
+            Xumm x = new Xumm();
             httpSession.setAttribute("xumm", x);
 
             //Detect If Smartphone / Personal computer
@@ -27,7 +27,7 @@ public class doAuthorization extends HttpServlet {
             x.processAuthorization();
             response.sendRedirect(x.getLoginURL_Redirect());
         }else{
-            xumm x = (xumm)httpSession.getAttribute("xumm");
+            Xumm x = (Xumm)httpSession.getAttribute("xumm");
             x.checkAuthorization();
             RequestDispatcher dispatcher = request.getRequestDispatcher("dashboard.jsp");
             dispatcher.forward(request, response);
