@@ -9,11 +9,9 @@ import java.util.Objects;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 
 public class doAuthorization extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        //HttpSession httpSession = request.getSession();
         HttpSession httpSession = request.getSession(false);
         if (httpSession == null || Objects.requireNonNull(httpSession).getAttribute("xumm") == null) {
             httpSession = request.getSession();
@@ -34,14 +32,5 @@ public class doAuthorization extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("dashboard.jsp");
             dispatcher.forward(request, response);
         }
-
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + "test" + "</h1>");
-        out.println("</body></html>");
     }
-
-    public void destroy() {
-    }
-
 }
