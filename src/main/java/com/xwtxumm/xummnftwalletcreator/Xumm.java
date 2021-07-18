@@ -79,7 +79,6 @@ public class Xumm implements Facade{
     }
 
     private String getPayload_uuid(String payload_uuid) throws IOException {
-        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         Request request = new Request.Builder()
                 .url(Facade.payload_uuid+payload_uuid)
                 .addHeader("X-API-Key", System.getenv("apiKey"))
