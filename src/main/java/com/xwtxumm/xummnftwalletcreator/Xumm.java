@@ -12,6 +12,7 @@ import org.owasp.html.Sanitizers;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -23,13 +24,7 @@ public class Xumm implements Facade {
 
     private String payloadDomain;
     private String domainValue = "";
-    private String nftName;
-    private String nftAuthor;
-    private String nftEmail;
-    private String nftTwitter;
-    private String nftDescription;
 
-    private String payload_Data;
     private String payload_uuid_Data;
     private String issued_user_token;
 
@@ -75,7 +70,7 @@ public class Xumm implements Facade {
                 .post(body)
                 .build();
         Response response = okHttpClient().newCall(request).execute();
-        return response.body().string();
+        return Objects.requireNonNull(response.body()).string();
     }
 
     private String getPayload_UUID(String payload_uuid) throws IOException {
@@ -85,7 +80,7 @@ public class Xumm implements Facade {
                 .addHeader("X-API-Secret", System.getenv("xApi"))
                 .build();
         Response response = okHttpClient().newCall(request).execute();
-        return response.body().string();
+        return Objects.requireNonNull(response.body()).string();
     }
 
     private String getLogin_URL(String json){
@@ -103,8 +98,6 @@ public class Xumm implements Facade {
             signInURL_Device = Facade.signIn_Phone;
         }else if(deviceType.equals("Personal computer")){
             signInURL_Device = Facade.signIn_Desktop;
-        }else{
-
         }
     }
     private String getUserToken(String json){
@@ -123,10 +116,11 @@ public class Xumm implements Facade {
             NamedStreamable.ByteArrayWrapper byteArrayWrapper = new NamedStreamable.ByteArrayWrapper(" ", dataByte);
             addResult = ipfs.add(byteArrayWrapper).get(0);
         }
+        assert addResult != null;
         return addResult.hash;
     }
 
-    private String createDomainValue(int modeValue, Optional<String> protocolValue, Optional<String> pointerValue, String... groupresourceValue){
+    private void createDomainValue(int modeValue, Optional<String> protocolValue, Optional<String> pointerValue, String... groupresourceValue){
         StringBuilder sb = new StringBuilder();
 
         if(modeValue == 1 || domainValue.equals("")){
@@ -141,9 +135,10 @@ public class Xumm implements Facade {
             sb.append(protocolValue.get()).append(":").append(pointerValue.get()).append("\n");
         }else if(modeValue == 10){
             sb.setLength(0);
-            return domainValue = sb.toString();
+            domainValue = sb.toString();
+            return;
         }
-        return domainValue += sb.toString();
+        domainValue += sb.toString();
     }
 
     public String sanitizeHTMLInput(String string){
@@ -186,11 +181,11 @@ public class Xumm implements Facade {
     private String createHTML(byte[] item, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
         StringBuilder htmlBuilder = new StringBuilder();
 
-        this.nftName = sanitizeHTMLInput(nftName);
-        this.nftAuthor = sanitizeHTMLInput(nftAuthor);
-        this.nftEmail = sanitizeHTMLInput(nftEmail);
-        this.nftTwitter = sanitizeHTMLInput(nftTwitter);
-        this.nftDescription = sanitizeHTMLInput(nftDescription);
+        String nftName1 = sanitizeHTMLInput(nftName);
+        String nftAuthor1 = sanitizeHTMLInput(nftAuthor);
+        String nftEmail1 = sanitizeHTMLInput(nftEmail);
+        String nftTwitter1 = sanitizeHTMLInput(nftTwitter);
+        String nftDescription1 = sanitizeHTMLInput(nftDescription);
 
         Multihash nftItem = createIPFS(item);
         String Website = "null";
@@ -203,7 +198,7 @@ public class Xumm implements Facade {
 
         htmlBuilder.append("<html lang=\"en\">\n" +
                 "    <head>\n" +
-                "        <title>XRP NFT:"+ this.nftName +"</title>\n" +
+                "        <title>XRP NFT:"+ nftName1 +"</title>\n" +
                 "    </head>\n" +
                 "    <style>\n" +
                 "        body,html {\n" +
@@ -360,8 +355,8 @@ public class Xumm implements Facade {
                 "    </div><br><br><br><br><br><br><br><br>" +
                 "    \n" + photo +
                 "        <div id=\"content\">\n" +
-                "            <h1>"+ this.nftName +"</h1>\n" +
-                "             <p>"+this.nftDescription+"</p>\n" +
+                "            <h1>"+ nftName1 +"</h1>\n" +
+                "             <p>"+ nftDescription1 +"</p>\n" +
                 "                    <table class=\"styled-table\">\n" +
                 "                <thead>\n" +
                 "                    <tr>\n" +
@@ -372,7 +367,7 @@ public class Xumm implements Facade {
                 "                <tbody>\n" +
                 "                    <tr>\n" +
                 "                        <td>Author</td>\n" +
-                "                        <td>"+ this.nftAuthor +"</td>\n" +
+                "                        <td>"+ nftAuthor1 +"</td>\n" +
                 "                    </tr>\n" +
                 /**
                  "                    <tr>\n" +
@@ -382,11 +377,11 @@ public class Xumm implements Facade {
                  **/
                 "                    <tr>\n" +
                 "                        <td>Author Email</td>\n" +
-                "                        <td>"+ this.nftEmail +"</td>\n" +
+                "                        <td>"+ nftEmail1 +"</td>\n" +
                 "                    </tr>\n" +
                 "                    <tr>\n" +
                 "                        <td>Author Twitter</td>\n" +
-                "                        <td>"+ this.nftTwitter +"</td>\n" +
+                "                        <td>"+ nftTwitter1 +"</td>\n" +
                 "                    </tr>\n" +
                 "                    <tr>\n" +
                 "                        <td>Author Website</td>\n" +
@@ -470,7 +465,7 @@ public class Xumm implements Facade {
     public void processAuthorization() {
         try {
             createSignIn_URL();
-            payload_Data = postPayload(signInURL_Device);
+            String payload_Data = postPayload(signInURL_Device);
             loginURL_Redirect = getLogin_URL(payload_Data);
             uuid = getUUID(payload_Data);
         } catch (IOException e) {
