@@ -1,6 +1,6 @@
 package com.xwtxumm.xummnftwalletcreator.impl;
 
-import com.xwtxumm.xummnftwalletcreator.api.Facade;
+import com.xwtxumm.xummnftwalletcreator.api.Action;
 import io.ipfs.api.IPFS;
 import io.ipfs.api.MerkleNode;
 import io.ipfs.api.NamedStreamable;
@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-public class Xumm implements Facade {
+public class Xumm implements Action {
     private String uuid;
     private String deviceType;
     private String loginURL_Redirect;
@@ -64,7 +64,7 @@ public class Xumm implements Facade {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(JSON, payload);
         Request request = new Request.Builder()
-                .url(Facade.payload_post)
+                .url(Action.payload_post)
                 .addHeader("X-API-Key", System.getenv("apiKey"))
                 .addHeader("X-API-Secret", System.getenv("xApi"))
                 .post(body)
@@ -75,7 +75,7 @@ public class Xumm implements Facade {
 
     private String getPayload_UUID(String payload_uuid) throws IOException {
         Request request = new Request.Builder()
-                .url(Facade.payload_uuid+payload_uuid)
+                .url(Action.payload_uuid+payload_uuid)
                 .addHeader("X-API-Key", System.getenv("apiKey"))
                 .addHeader("X-API-Secret", System.getenv("xApi"))
                 .build();
@@ -95,9 +95,9 @@ public class Xumm implements Facade {
 
     private void createSignIn_URL(){
         if(deviceType.equals("Smartphone")){
-            signInURL_Device = Facade.signIn_Phone;
+            signInURL_Device = Action.signIn_Phone;
         }else if(deviceType.equals("Personal computer")){
-            signInURL_Device = Facade.signIn_Desktop;
+            signInURL_Device = Action.signIn_Desktop;
         }
     }
     private String getUserToken(String json){

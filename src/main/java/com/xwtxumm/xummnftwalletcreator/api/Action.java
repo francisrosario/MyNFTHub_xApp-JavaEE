@@ -1,6 +1,6 @@
 package com.xwtxumm.xummnftwalletcreator.api;
 
-public interface Facade {
+public interface Action {
     //////////////
     //Endpoints
     String payload_post = "https://xumm.app/api/v1/platform/payload";
