@@ -10,7 +10,6 @@ import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
 
 import javax.xml.bind.DatatypeConverter;
-import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -78,7 +77,7 @@ public class Xumm implements Facade{
         return response.body().string();
     }
 
-    private String getPayload_uuid(String payload_uuid) throws IOException {
+    private String getPayload_UUID(String payload_uuid) throws IOException {
         Request request = new Request.Builder()
                 .url(Facade.payload_uuid+payload_uuid)
                 .addHeader("X-API-Key", System.getenv("apiKey"))
@@ -88,7 +87,7 @@ public class Xumm implements Facade{
         return response.body().string();
     }
 
-    private String getLoginURL(String json){
+    private String getLogin_URL(String json){
         jsonObject(json);
         return jsonObject.getJSONObject("next").get("always").toString();
     }
@@ -151,9 +150,6 @@ public class Xumm implements Facade{
         return policy.sanitize(string);
     }
 
-    private String removeWhiteSpace(String string){
-        return string.replaceAll("\\s+","");
-    }
     private String createPayload(String json){
         StringBuilder sb = new StringBuilder();
         sb.append("{");
@@ -185,6 +181,7 @@ public class Xumm implements Facade{
                 "},");
         return sb.toString();
     }
+
     private String createHTML(byte[] item, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
         StringBuilder htmlBuilder = new StringBuilder();
 
@@ -471,15 +468,10 @@ public class Xumm implements Facade{
     @Override
     public void processAuthorization() {
         try {
-            //Detect if Desktop / Mobile.
             createSignIn_URL();
-            //Get JSON of postRequest
             payload_Data = postPayload(signInURL_Device);
-            //Get login URL from resonse JSON
-            loginURL_Redirect = getLoginURL(payload_Data);
-            //Get UUID from postRequest response.
+            loginURL_Redirect = getLogin_URL(payload_Data);
             uuid = getUUID(payload_Data);
-            //System.out.println("UUID FROM payload_data: " + uuid);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -488,13 +480,11 @@ public class Xumm implements Facade{
     @Override
     public void checkAuthorization() {
         try {
-            payload_uuid_Data = getPayload_uuid(uuid);
+            payload_uuid_Data = getPayload_UUID(uuid);
         } catch (IOException e) {
             e.printStackTrace();
         }
-            //System.out.println("Payload uuid data: " + payload_uuid_Data);
             issued_user_token = getUserToken(payload_uuid_Data);
-            //System.out.println("Issued User Token: " + issued_user_token);
         }
 
     @Override
