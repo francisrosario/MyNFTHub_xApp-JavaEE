@@ -1,6 +1,6 @@
 package com.xwtxumm.xummnftwalletcreator.controller;
 
-import com.xwtxumm.xummnftwalletcreator.Xumm;
+import com.xwtxumm.xummnftwalletcreator.impl.Xumm;
 import net.sf.uadetector.ReadableUserAgent;
 import net.sf.uadetector.UserAgentStringParser;
 import net.sf.uadetector.service.UADetectorServiceFactory;

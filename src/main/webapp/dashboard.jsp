@@ -1,4 +1,4 @@
-<%@ page import="com.xwtxumm.xummnftwalletcreator.Xumm" %>
+<%@ page import="com.xwtxumm.xummnftwalletcreator.impl.Xumm" %>
 <%
   Xumm x = (Xumm)session.getAttribute("xumm");
 %>

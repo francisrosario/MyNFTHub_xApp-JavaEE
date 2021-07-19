@@ -1,4 +1,4 @@
-package com.xwtxumm.xummnftwalletcreator;
+package com.xwtxumm.xummnftwalletcreator.impl;
 
 import com.xwtxumm.xummnftwalletcreator.api.Facade;
 import io.ipfs.api.IPFS;
