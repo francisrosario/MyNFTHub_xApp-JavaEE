@@ -1,4 +1,4 @@
-package com.xwtxumm.xummnftwalletcreator;
+package com.xwtxumm.xummnftwalletcreator.api;
 
 public interface Facade {
     //////////////

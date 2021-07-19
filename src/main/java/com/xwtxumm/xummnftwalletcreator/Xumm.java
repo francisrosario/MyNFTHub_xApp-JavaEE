@@ -1,5 +1,6 @@
 package com.xwtxumm.xummnftwalletcreator;
 
+import com.xwtxumm.xummnftwalletcreator.api.Facade;
 import io.ipfs.api.IPFS;
 import io.ipfs.api.MerkleNode;
 import io.ipfs.api.NamedStreamable;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 
-public class Xumm implements Facade{
+public class Xumm implements Facade {
     private String uuid;
     private String deviceType;
     private String loginURL_Redirect;
