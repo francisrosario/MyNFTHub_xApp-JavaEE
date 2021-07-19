@@ -452,7 +452,6 @@ public class Xumm implements Action {
                 "        loop();\n" +
                 "    </script>\n" +
                 "</body></html>");
-        htmlBuilder.toString();
         Multihash nftHtml = createIPFS(htmlBuilder.toString().getBytes());
         createDomainValue(2, Optional.of("ipfs"), Optional.of(String.valueOf(nftHtml)));
         createDomainValue(2, Optional.of("ipfs"), Optional.of(String.valueOf(nftItem)));
