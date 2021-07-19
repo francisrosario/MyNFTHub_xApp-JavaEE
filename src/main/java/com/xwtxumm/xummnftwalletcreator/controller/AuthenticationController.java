@@ -12,7 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 public class AuthenticationController extends HttpServlet {
-
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession httpSession = request.getSession(false);
         if (httpSession == null || Objects.requireNonNull(httpSession).getAttribute("xumm") == null) {
