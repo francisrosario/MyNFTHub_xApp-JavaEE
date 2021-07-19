@@ -88,13 +88,13 @@ public class Xumm implements Facade{
         return response.body().string();
     }
 
-    private String getLoginURL(String... json){
-        jsonObject(json[0]);
+    private String getLoginURL(String json){
+        jsonObject(json);
         return jsonObject.getJSONObject("next").get("always").toString();
     }
 
-    private String getUUID(String... json){
-        jsonObject(json[0]);
+    private String getUUID(String json){
+        jsonObject(json);
         return jsonObject.get("uuid").toString();
     }
 
@@ -107,8 +107,8 @@ public class Xumm implements Facade{
 
         }
     }
-    private String getUserToken(String... json){
-        jsonObject(json[0]);
+    private String getUserToken(String json){
+        jsonObject(json);
         return jsonObject.getJSONObject("application").get("issued_user_token").toString();
     }
 
