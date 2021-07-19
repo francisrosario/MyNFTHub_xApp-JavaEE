@@ -1,5 +1,6 @@
-package com.xwtxumm.xummnftwalletcreator;
+package com.xwtxumm.xummnftwalletcreator.controller;
 
+import com.xwtxumm.xummnftwalletcreator.Xumm;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.RequestDispatcher;

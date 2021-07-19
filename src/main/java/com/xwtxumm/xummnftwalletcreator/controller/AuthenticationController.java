@@ -1,5 +1,6 @@
-package com.xwtxumm.xummnftwalletcreator;
+package com.xwtxumm.xummnftwalletcreator.controller;
 
+import com.xwtxumm.xummnftwalletcreator.Xumm;
 import net.sf.uadetector.ReadableUserAgent;
 import net.sf.uadetector.UserAgentStringParser;
 import net.sf.uadetector.service.UADetectorServiceFactory;
@@ -11,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 public class AuthenticationController extends HttpServlet {
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession httpSession = request.getSession(false);
         if (httpSession == null || Objects.requireNonNull(httpSession).getAttribute("xumm") == null) {
