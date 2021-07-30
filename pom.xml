@@ -104,6 +104,11 @@
             <artifactId>xrpl4j-model</artifactId>
             <version>v2.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.francisrosario</groupId>
+            <artifactId>xumm4j</artifactId>
+            <version>0.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
