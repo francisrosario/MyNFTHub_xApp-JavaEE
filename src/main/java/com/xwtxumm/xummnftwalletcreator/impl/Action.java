@@ -22,6 +22,7 @@ import java.util.Optional;
 public class Action implements IAction {
     private final XummClient xummClient;
     private final DeserializeIT deserializeIT;
+    private String URL = "https://xls19d-xumm-dev.herokuapp.com";
     private String UUID;
     private String deviceType;
     private String SignInURL;
@@ -386,13 +387,13 @@ public class Action implements IAction {
         if ("Smartphone".equals(deviceType)) {
             postPayloadResponse = xummClient.postPayload(new PayloadBuilder.builder()
                     .txjson(IPayloadBuilder.TXJSON_SIGNIN)
-                    .returnURL_App("http://localhost:8080/XUMM_NFTWalletCreator_war_exploded/")
+                    .returnURL_App(URL)
                     .build()
             );
         } else {
             postPayloadResponse = xummClient.postPayload(new PayloadBuilder.builder()
                     .txjson(IPayloadBuilder.TXJSON_SIGNIN)
-                    .returnURL_Web("http://localhost:8080/XUMM_NFTWalletCreator_war_exploded/")
+                    .returnURL_Web(URL)
                     .build()
             );
         }
