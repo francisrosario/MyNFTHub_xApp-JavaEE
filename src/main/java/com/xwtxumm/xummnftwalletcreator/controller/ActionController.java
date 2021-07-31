@@ -1,6 +1,6 @@
 package com.xwtxumm.xummnftwalletcreator.controller;
 
-import com.xwtxumm.xummnftwalletcreator.impl.Xumm;
+import com.xwtxumm.xummnftwalletcreator.impl.Action;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +20,7 @@ public class ActionController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/");
             dispatcher.forward(request, response);
         } else {
-            Xumm x = (Xumm) httpSession.getAttribute("xumm");
+            Action x = (Action) httpSession.getAttribute("xumm");
             Part img = request.getPart("file");
             byte[] imageByte = IOUtils.toByteArray(img.getInputStream());
             String nftName = request.getParameter("nftName");

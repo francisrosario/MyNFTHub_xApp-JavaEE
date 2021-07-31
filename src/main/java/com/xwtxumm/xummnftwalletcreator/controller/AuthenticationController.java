@@ -1,6 +1,6 @@
 package com.xwtxumm.xummnftwalletcreator.controller;
 
-import com.xwtxumm.xummnftwalletcreator.impl.Xumm;
+import com.xwtxumm.xummnftwalletcreator.impl.Action;
 import net.sf.uadetector.ReadableUserAgent;
 import net.sf.uadetector.UserAgentStringParser;
 import net.sf.uadetector.service.UADetectorServiceFactory;
@@ -18,7 +18,7 @@ public class AuthenticationController extends HttpServlet {
         if (httpSession == null || Objects.requireNonNull(httpSession).getAttribute("xumm") == null) {
             httpSession = request.getSession();
             httpSession.setMaxInactiveInterval(180);
-            Xumm x = new Xumm();
+            Action x = new Action();
             httpSession.setAttribute("xumm", x);
 
             //Detect If Smartphone / Personal computer
@@ -26,11 +26,11 @@ public class AuthenticationController extends HttpServlet {
             ReadableUserAgent agent = parser.parse(request.getHeader("User-Agent"));
             x.setDeviceType(agent.getDeviceCategory().getCategory().getName());
 
-            x.processAuthorization();
-            response.sendRedirect(x.getLoginURL_Redirect());
+            x.processAuthentication();
+            response.sendRedirect(x.getSignInURL());
         }else{
-            Xumm x = (Xumm)httpSession.getAttribute("xumm");
-            x.checkAuthorization();
+            Action x = (Action)httpSession.getAttribute("xumm");
+            x.checkAuthentication();
             RequestDispatcher dispatcher = request.getRequestDispatcher("dashboard.jsp");
             dispatcher.forward(request, response);
         }

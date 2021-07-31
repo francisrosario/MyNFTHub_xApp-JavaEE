@@ -1,183 +1,52 @@
 package com.xwtxumm.xummnftwalletcreator.impl;
 
-import com.xwtxumm.xummnftwalletcreator.api.Action;
+
+import com.fl.xumm4j.api.builder.IPayloadBuilder;
+import com.fl.xumm4j.sdk.DeserializeIT;
+import com.fl.xumm4j.sdk.XummClient;
+import com.fl.xumm4j.sdk.builder.CredentialsBuilder;
+import com.fl.xumm4j.sdk.builder.PayloadBuilder;
+import com.xwtxumm.xummnftwalletcreator.api.IAction;
 import io.ipfs.api.IPFS;
 import io.ipfs.api.MerkleNode;
 import io.ipfs.api.NamedStreamable;
 import io.ipfs.multihash.Multihash;
-import okhttp3.*;
-import org.json.JSONObject;
 import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Optional;
 
 
-public class Xumm implements Action {
-    private String uuid;
+public class Action implements IAction {
+    private final XummClient xummClient;
+    private final DeserializeIT deserializeIT;
+    private String UUID;
     private String deviceType;
-    private String loginURL_Redirect;
-    private String signInURL_Device;
-
-    private String payloadDomain;
-    private String domainValue = "";
-
-    private String payload_uuid_Data;
+    private String SignInURL;
     private String issued_user_token;
-
-    private OkHttpClient okHttpClient;
-    private JSONObject jsonObject;
-
-
-    public String getPayloadDomain() {
-        return payloadDomain;
-    }
-
-    public void setPayloadDomain(String payloadDomain) {
-        this.payloadDomain = payloadDomain;
-    }
+    private String domainValue = "";
 
     public void setDeviceType(String deviceType) {
         this.deviceType = deviceType;
     }
 
-    public String getLoginURL_Redirect() {
-        return loginURL_Redirect;
+    public String getSignInURL() {
+        return SignInURL;
     }
 
-    private void jsonObject(String... json){
-        this.jsonObject = new JSONObject(json[0]);
-    }
-
-    private OkHttpClient okHttpClient(){
-        if(this.okHttpClient == null){
-            return this.okHttpClient = new OkHttpClient().newBuilder()
-                    .build();
-        }
-        return this.okHttpClient;
-    }
-
-    private String postPayload(String payload) throws IOException {
-        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-        RequestBody body = RequestBody.create(JSON, payload);
-        Request request = new Request.Builder()
-                .url(Action.payload_post)
-                .addHeader("X-API-Key", System.getenv("apiKey"))
-                .addHeader("X-API-Secret", System.getenv("xApi"))
-                .post(body)
+    public Action() {
+        CredentialsBuilder credentialsBuilder = new CredentialsBuilder.builder()
+                .secretKey(System.getenv("xApi"))
+                .apiKey(System.getenv("apiKey"))
                 .build();
-        Response response = okHttpClient().newCall(request).execute();
-        return Objects.requireNonNull(response.body()).string();
-    }
-
-    private String getPayload_UUID(String payload_uuid) throws IOException {
-        Request request = new Request.Builder()
-                .url(Action.payload_uuid+payload_uuid)
-                .addHeader("X-API-Key", System.getenv("apiKey"))
-                .addHeader("X-API-Secret", System.getenv("xApi"))
-                .build();
-        Response response = okHttpClient().newCall(request).execute();
-        return Objects.requireNonNull(response.body()).string();
-    }
-
-    private String getLogin_URL(String json){
-        jsonObject(json);
-        return jsonObject.getJSONObject("next").get("always").toString();
-    }
-
-    private String getUUID(String json){
-        jsonObject(json);
-        return jsonObject.get("uuid").toString();
-    }
-
-    private void createSignIn_URL(){
-        if(deviceType.equals("Smartphone")){
-            signInURL_Device = Action.signIn_Phone;
-        }else if(deviceType.equals("Personal computer")){
-            signInURL_Device = Action.signIn_Desktop;
-        }
-    }
-    private String getUserToken(String json){
-        jsonObject(json);
-        return jsonObject.getJSONObject("application").get("issued_user_token").toString();
+        xummClient = new XummClient(credentialsBuilder);
+        deserializeIT = new DeserializeIT();
     }
 
     //////////////////////
     //NFT Creator
-
-    private Multihash createIPFS(byte[] dataByte) throws IOException {
-        MerkleNode addResult = null;
-        IPFS ipfs = new IPFS(System.getenv("IPFS_Multiaddress"));
-        ipfs.timeout(1);
-        if (dataByte != null) {
-            NamedStreamable.ByteArrayWrapper byteArrayWrapper = new NamedStreamable.ByteArrayWrapper(" ", dataByte);
-            addResult = ipfs.add(byteArrayWrapper).get(0);
-        }
-        assert addResult != null;
-        return addResult.hash;
-    }
-
-    private void createDomainValue(int modeValue, Optional<String> protocolValue, Optional<String> pointerValue, String... groupresourceValue){
-        StringBuilder sb = new StringBuilder();
-
-        if(modeValue == 1 || domainValue.equals("")){
-            if(domainValue.equals("") && groupresourceValue.length == 0){
-                sb.append("@xnft:\n");
-            }else if(domainValue.equals("") && groupresourceValue.length == 1 || !domainValue.equals("") && groupresourceValue.length == 1){
-                sb.append("@").append(groupresourceValue[0]).append(":\n");
-            }
-        }
-
-        if(modeValue == 2){
-            sb.append(protocolValue.get()).append(":").append(pointerValue.get()).append("\n");
-        }else if(modeValue == 10){
-            sb.setLength(0);
-            domainValue = sb.toString();
-            return;
-        }
-        domainValue += sb.toString();
-    }
-
-    public String sanitizeHTMLInput(String string){
-        PolicyFactory policy = Sanitizers.FORMATTING.and(Sanitizers.BLOCKS);
-        return policy.sanitize(string);
-    }
-
-    private String createPayload(String json){
-        StringBuilder sb = new StringBuilder();
-        sb.append("{");
-        sb.append("\"options\": {");
-        sb.append("\"submit\": \"true\",");
-        sb.append("\"multisign\": \"false\",");
-        sb.append("\"expire\": \"1440\"");
-        sb.append("},");
-        sb.append("     \"custom_meta\": {\n" +
-                "          \"instruction\": \"By approving this transaction, Your wallet will be indexed to NFT Wallet Indexer... The Domain changes is provided below including it's base58 hash.\"\n" +
-                "     },");
-        sb.append("\"txjson\":");
-        sb.append(json);
-        sb.append("\"user_token\": \"");
-        sb.append(issued_user_token).append("\"");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    private String sbDomainBuilder(String domainValue) {
-        String hex = DatatypeConverter.printHexBinary(domainValue.getBytes());
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("{\n" +
-                "    \"TransactionType\": \"AccountSet\",\n" +
-                "    \"Fee\": \"12\",\n" +
-                "    \"Domain\": \""+hex+"\"," +
-                "    \"SetFlag\": 5\n" +
-                "},");
-        return sb.toString();
-    }
-
     private String createHTML(byte[] item, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
         StringBuilder htmlBuilder = new StringBuilder();
 
@@ -460,45 +329,94 @@ public class Xumm implements Action {
         return domainValue;
     }
 
-    @Override
-    public void processAuthorization() {
-        try {
-            createSignIn_URL();
-            String payload_Data = postPayload(signInURL_Device);
-            loginURL_Redirect = getLogin_URL(payload_Data);
-            uuid = getUUID(payload_Data);
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void createDomainValue(int modeValue, Optional<String> protocolValue, Optional<String> pointerValue, String... groupresourceValue){
+        StringBuilder sb = new StringBuilder();
+
+        if(modeValue == 1 || domainValue.equals("")){
+            if(domainValue.equals("") && groupresourceValue.length == 0){
+                sb.append("@xnft:\n");
+            }else if(domainValue.equals("") && groupresourceValue.length == 1 || !domainValue.equals("") && groupresourceValue.length == 1){
+                sb.append("@").append(groupresourceValue[0]).append(":\n");
+            }
         }
+
+        if(modeValue == 2){
+            sb.append(protocolValue.get()).append(":").append(pointerValue.get()).append("\n");
+        }else if(modeValue == 10){
+            sb.setLength(0);
+            domainValue = sb.toString();
+            return;
+        }
+        domainValue += sb.toString();
+    }
+
+    private Multihash createIPFS(byte[] dataByte) throws IOException {
+        MerkleNode addResult = null;
+        IPFS ipfs = new IPFS(System.getenv("IPFS_Multiaddress"));
+        ipfs.timeout(1);
+        if (dataByte != null) {
+            NamedStreamable.ByteArrayWrapper byteArrayWrapper = new NamedStreamable.ByteArrayWrapper(" ", dataByte);
+            addResult = ipfs.add(byteArrayWrapper).get(0);
+        }
+        assert addResult != null;
+        return addResult.hash;
+    }
+
+    private String domainBuilder(String domainValue) {
+        String hex = DatatypeConverter.printHexBinary(domainValue.getBytes());
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{\n" +
+                "    \"TransactionType\": \"AccountSet\",\n" +
+                "    \"Fee\": \"12\",\n" +
+                "    \"Domain\": \""+hex+"\"," +
+                "    \"SetFlag\": 5\n" +
+                "}");
+        return sb.toString();
+    }
+
+    public String sanitizeHTMLInput(String string){
+        PolicyFactory policy = Sanitizers.FORMATTING.and(Sanitizers.BLOCKS);
+        return policy.sanitize(string);
     }
 
     @Override
-    public void checkAuthorization() {
-        try {
-            payload_uuid_Data = getPayload_UUID(uuid);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void processAuthentication() {
+        String postPayloadResponse;
+        if ("Smartphone".equals(deviceType)) {
+            postPayloadResponse = xummClient.postPayload(new PayloadBuilder.builder()
+                    .txjson(IPayloadBuilder.TXJSON_SIGNIN)
+                    .returnURL_App("http://localhost:8080/XUMM_NFTWalletCreator_war_exploded/")
+                    .build()
+            );
+        } else {
+            postPayloadResponse = xummClient.postPayload(new PayloadBuilder.builder()
+                    .txjson(IPayloadBuilder.TXJSON_SIGNIN)
+                    .returnURL_Web("http://localhost:8080/XUMM_NFTWalletCreator_war_exploded/")
+                    .build()
+            );
         }
-            issued_user_token = getUserToken(payload_uuid_Data);
-        }
+        SignInURL = deserializeIT.Payload(postPayloadResponse).getAlways();
+        UUID = deserializeIT.Payload(postPayloadResponse).getUuid();
+    }
 
     @Override
-    public void createNFTWallet(byte[] imageByte, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) {
-        try {
-            System.out.println(nftName);
-            createHTML(imageByte, nftName, nftAuthor, nftEmail, nftTwitter, nftDescription);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String JSON = sbDomainBuilder(domainValue);
-        createDomainValue(10, Optional.empty(), Optional.empty());
-        payloadDomain = createPayload(JSON);
-        try {
-            postPayload(payloadDomain);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void checkAuthentication() throws IOException {
+        String getPayloadResponse = xummClient.getPayload(UUID);
+        issued_user_token = deserializeIT.getPayload(getPayloadResponse).getIssued_user_token();
+    }
 
+    @Override
+    public void createNFTWallet(byte[] imageByte, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
+        createHTML(imageByte, nftName, nftAuthor, nftEmail, nftTwitter, nftDescription);
+        String JSON = domainBuilder(domainValue);
+        createDomainValue(10, Optional.empty(), Optional.empty());
+        xummClient.postPayload(new PayloadBuilder.builder()
+                .expire(60)
+                .userToken(issued_user_token)
+                .txjson(JSON)
+                .build()
+        );
     }
 
 }
