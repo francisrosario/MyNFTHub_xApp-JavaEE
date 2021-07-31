@@ -1,6 +1,11 @@
 package com.xwtxumm.xummnftwalletcreator.impl;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fl.xrpl4j.model.jackson.ObjectMapperFactory;
+import com.fl.xrpl4j.model.transactions.AccountSet;
+import com.fl.xrpl4j.model.transactions.XrpCurrencyAmount;
 import com.fl.xumm4j.api.builder.IPayloadBuilder;
 import com.fl.xumm4j.sdk.DeserializeIT;
 import com.fl.xumm4j.sdk.XummClient;
@@ -363,17 +368,15 @@ public class Action implements IAction {
         return addResult.hash;
     }
 
-    private String domainBuilder(String domainValue) {
-        String hex = DatatypeConverter.printHexBinary(domainValue.getBytes());
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("{\n" +
-                "    \"TransactionType\": \"AccountSet\",\n" +
-                "    \"Fee\": \"12\",\n" +
-                "    \"Domain\": \""+hex+"\"," +
-                "    \"SetFlag\": 5\n" +
-                "}");
-        return sb.toString();
+    private String domainBuilder(String domain) throws JsonProcessingException {
+        ObjectMapper objectMapper = ObjectMapperFactory.create();
+        String hex = DatatypeConverter.printHexBinary(domain.getBytes());
+        AccountSet domainset = AccountSet.builder()
+                .fee(XrpCurrencyAmount.ofDrops(12))
+                .domain(hex)
+                .setFlag(AccountSet.AccountSetFlag.ACCOUNT_TXN_ID)
+                .build();
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(domainset);
     }
 
     public String sanitizeHTMLInput(String string){
