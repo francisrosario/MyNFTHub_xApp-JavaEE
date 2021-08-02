@@ -26,6 +26,11 @@ public class AuthenticationController extends HttpServlet {
             ReadableUserAgent agent = parser.parse(request.getHeader("User-Agent"));
             x.setDeviceType(agent.getDeviceCategory().getCategory().getName());
 
+            //XAPP
+            StringBuffer requestURL = request.getRequestURL();
+            requestURL.append("?load=true").append(request.getQueryString());
+            System.out.println(request.getParameter("xAppToken"));
+
             x.processAuthentication();
             response.sendRedirect(x.getSignInURL());
         }else{
