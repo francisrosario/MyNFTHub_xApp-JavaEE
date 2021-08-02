@@ -34,6 +34,10 @@ public class Action implements IAction {
     private String issued_user_token;
     private String domainValue = "";
 
+    public String getUUID() {
+        return UUID;
+    }
+
     public void setDeviceType(String deviceType) {
         this.deviceType = deviceType;
     }
