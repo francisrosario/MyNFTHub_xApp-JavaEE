@@ -22,7 +22,11 @@ public class AuthenticationController extends HttpServlet {
             httpSession.setAttribute("xumm", x);
 
             //Set Primary URL for XUMM APP/WEB Redirect.
-            x.setURL(request.getRequestURL().toString());
+            if(request.getLocalName().contains("localhost")){
+                x.setURL(request.getRequestURL().toString());
+            }else{
+                x.setURL("https://"+request.getLocalName());
+            }
 
             //Detect If Smartphone / Personal computer
             UserAgentStringParser parser = UADetectorServiceFactory.getOnlineUpdatingParser();
