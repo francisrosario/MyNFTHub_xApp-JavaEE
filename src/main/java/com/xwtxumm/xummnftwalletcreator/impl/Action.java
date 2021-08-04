@@ -345,6 +345,7 @@ public class Action implements IAction {
 
         if(mode == 1 || domain == null){
             if(domain == null && groupResource.length == 0){
+                domain = new String();
                 sb.append("@xnft:\n");
             }else if(domain == null && groupResource.length == 1 || domain != null && groupResource.length == 1){
                 sb.append("@").append(groupResource[0]).append(":\n");
@@ -356,7 +357,6 @@ public class Action implements IAction {
         }else if(mode == 10){
             sb.setLength(0);
             domain = sb.toString();
-            return;
         }
         domain += sb.toString();
     }
