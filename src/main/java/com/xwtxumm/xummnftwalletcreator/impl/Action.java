@@ -16,9 +16,13 @@ import io.ipfs.api.IPFS;
 import io.ipfs.api.MerkleNode;
 import io.ipfs.api.NamedStreamable;
 import io.ipfs.multihash.Multihash;
+import net.sf.uadetector.ReadableUserAgent;
+import net.sf.uadetector.UserAgentStringParser;
+import net.sf.uadetector.service.UADetectorServiceFactory;
 import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.util.Optional;
@@ -58,6 +62,13 @@ public class Action implements IAction {
                 .build();
         xummClient = new XummClient(credentialsBuilder);
         deserializeIT = new DeserializeIT();
+    }
+
+    public void setDeviceType(HttpServletRequest request) {
+        //Detect If Smartphone / Personal computer
+        UserAgentStringParser parser = UADetectorServiceFactory.getOnlineUpdatingParser();
+        ReadableUserAgent agent = parser.parse(request.getHeader("User-Agent"));
+        setDeviceType(agent.getDeviceCategory().getCategory().getName());
     }
 
     //////////////////////

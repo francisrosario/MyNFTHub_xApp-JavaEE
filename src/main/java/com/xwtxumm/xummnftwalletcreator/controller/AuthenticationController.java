@@ -15,6 +15,7 @@ public class AuthenticationController extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession httpSession = request.getSession(false);
+        //IF session is null or getAttribute object is null then redo the process if not do checkAuthorization.
         if (httpSession == null || Objects.requireNonNull(httpSession).getAttribute("xumm") == null) {
             httpSession = request.getSession();
             httpSession.setMaxInactiveInterval(180);
@@ -27,17 +28,14 @@ public class AuthenticationController extends HttpServlet {
             }else{
                 x.setURL("https://xls19d-xumm-dev.herokuapp.com/");
             }
-
-            //Detect If Smartphone / Personal computer
-            UserAgentStringParser parser = UADetectorServiceFactory.getOnlineUpdatingParser();
-            ReadableUserAgent agent = parser.parse(request.getHeader("User-Agent"));
-            x.setDeviceType(agent.getDeviceCategory().getCategory().getName());
-
+            // Set Device type of Payload Generator
+            x.setDeviceType(request);
             //Get xApp OTT and other user info.
             StringBuffer requestURL = request.getRequestURL();
             requestURL.append("?load=true").append(request.getQueryString());
-
+            //Process Authentication by doing a XUMM Sign-In
             x.processAuthentication();
+            //Redirect to XUMM generated signin
             response.sendRedirect(x.getSignInURL());
         }else{
             Action x = (Action)httpSession.getAttribute("xumm");
@@ -46,4 +44,5 @@ public class AuthenticationController extends HttpServlet {
             dispatcher.forward(request, response);
         }
     }
+
 }
