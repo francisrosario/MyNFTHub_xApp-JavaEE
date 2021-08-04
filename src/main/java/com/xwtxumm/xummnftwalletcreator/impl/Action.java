@@ -421,8 +421,8 @@ public class Action implements IAction {
         String JSON = domainBuilder(domain);
         createDomain(10, Optional.empty(), Optional.empty());
         xummClient.postPayload(new PayloadBuilder.builder()
-                .expire(60)
-                .instruction("By signing this transaction your wallet will become a <b>Wallet based Proof of Digital Asset Property and Rights</b>, After this you can now use My NFT Wallet Profile")
+                .expire(120)
+                .instruction("By signing this transaction, your Wallet will become a Wallet-based Proof of Digital Asset Property and Rights; after this, you can now use My NFT Wallet Profile xApp.")
                 .userToken(issued_user_token)
                 .txjson(JSON)
                 .build()
