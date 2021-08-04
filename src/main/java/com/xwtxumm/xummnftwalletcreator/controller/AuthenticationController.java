@@ -1,10 +1,6 @@
 package com.xwtxumm.xummnftwalletcreator.controller;
 
 import com.xwtxumm.xummnftwalletcreator.impl.Action;
-import net.sf.uadetector.ReadableUserAgent;
-import net.sf.uadetector.UserAgentStringParser;
-import net.sf.uadetector.service.UADetectorServiceFactory;
-
 import java.io.*;
 import java.util.Objects;
 import javax.servlet.RequestDispatcher;

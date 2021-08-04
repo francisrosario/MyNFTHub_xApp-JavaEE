@@ -27,7 +27,6 @@ import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.util.Optional;
 
-
 public class Action implements IAction {
     private final XummClient xummClient;
     private final DeserializeIT deserializeIT;
@@ -47,10 +46,6 @@ public class Action implements IAction {
         return Uuid;
     }
 
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType;
-    }
-
     public String getSignInURL() {
         return SignInURL;
     }
@@ -68,7 +63,7 @@ public class Action implements IAction {
         //Detect If Smartphone / Personal computer
         UserAgentStringParser parser = UADetectorServiceFactory.getOnlineUpdatingParser();
         ReadableUserAgent agent = parser.parse(request.getHeader("User-Agent"));
-        setDeviceType(agent.getDeviceCategory().getCategory().getName());
+        deviceType = agent.getDeviceCategory().getCategory().getName();
     }
 
     //////////////////////
