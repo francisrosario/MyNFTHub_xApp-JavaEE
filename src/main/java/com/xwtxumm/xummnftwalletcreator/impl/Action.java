@@ -69,7 +69,7 @@ public class Action implements IAction {
 
         Multihash nftItem = createIPFS(item);
         String Website = "null";
-        String CreatedAt = "https://xls19d-xumm-dev.herokuapp.com/";
+        String CreatedAt = "https://xumm.app/";
         String NFTBuilder = "https://github.com/francisrosario/";
 
         String photo = "<div id=\"card\">\n" +
