@@ -29,7 +29,7 @@ public class AuthenticationController extends HttpServlet {
             ReadableUserAgent agent = parser.parse(request.getHeader("User-Agent"));
             x.setDeviceType(agent.getDeviceCategory().getCategory().getName());
 
-            //XAPP
+            //Get xApp OTT and other user info.
             StringBuffer requestURL = request.getRequestURL();
             requestURL.append("?load=true").append(request.getQueryString());
 
