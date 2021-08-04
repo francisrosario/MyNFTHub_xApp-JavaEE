@@ -29,10 +29,8 @@ public class AuthenticationController extends HttpServlet {
             //XAPP
             StringBuffer requestURL = request.getRequestURL();
             requestURL.append("?load=true").append(request.getQueryString());
-            System.out.println(request.getParameter("xAppToken"));
 
             x.processAuthentication();
-            System.out.println(x.getUuid());
             response.sendRedirect(x.getSignInURL());
         }else{
             Action x = (Action)httpSession.getAttribute("xumm");

@@ -410,7 +410,7 @@ public class Action implements IAction {
     }
 
     @Override
-    public void checkAuthentication() throws IOException {
+    public void checkAuthentication() {
         String getPayloadResponse = xummClient.getPayload(Uuid);
         issued_user_token = deserializeIT.getPayload(getPayloadResponse).getIssued_user_token();
     }
