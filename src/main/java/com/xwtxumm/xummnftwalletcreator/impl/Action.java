@@ -27,13 +27,17 @@ import java.util.Optional;
 public class Action implements IAction {
     private final XummClient xummClient;
     private final DeserializeIT deserializeIT;
-    private final String URL = "https://xls19d-xumm-dev.herokuapp.com";
+    private String URL;
 
     private String Uuid;
     private String deviceType;
     private String SignInURL;
     private String issued_user_token;
     private String domain;
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
 
     public String getUuid() {
         return Uuid;

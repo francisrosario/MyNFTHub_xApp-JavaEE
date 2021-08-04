@@ -21,6 +21,9 @@ public class AuthenticationController extends HttpServlet {
             Action x = new Action();
             httpSession.setAttribute("xumm", x);
 
+            //Set Primary URL for XUMM APP/WEB Redirect.
+            x.setURL(request.getRequestURL().toString());
+
             //Detect If Smartphone / Personal computer
             UserAgentStringParser parser = UADetectorServiceFactory.getOnlineUpdatingParser();
             ReadableUserAgent agent = parser.parse(request.getHeader("User-Agent"));
