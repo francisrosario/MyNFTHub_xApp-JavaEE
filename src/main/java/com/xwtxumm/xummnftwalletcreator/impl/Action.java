@@ -58,14 +58,14 @@ public class Action implements IAction {
 
     //////////////////////
     //NFT Creator
-    private String createHTML(byte[] item, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
+    private String createHTML(byte[] item, String name, String author, String email, String twitter, String descriptopn) throws IOException {
         StringBuilder htmlBuilder = new StringBuilder();
 
-        String nftName1 = sanitizeHTML(nftName);
-        String nftAuthor1 = sanitizeHTML(nftAuthor);
-        String nftEmail1 = sanitizeHTML(nftEmail);
-        String nftTwitter1 = sanitizeHTML(nftTwitter);
-        String nftDescription1 = sanitizeHTML(nftDescription);
+        String nftName1 = sanitizeInput(name);
+        String nftAuthor1 = sanitizeInput(author);
+        String nftEmail1 = sanitizeInput(email);
+        String nftTwitter1 = sanitizeInput(twitter);
+        String nftDescription1 = sanitizeInput(descriptopn);
 
         Multihash nftItem = createIPFS(item);
         String Website = "null";
@@ -343,7 +343,7 @@ public class Action implements IAction {
     private void createDomain(int mode, Optional<String> protocol, Optional<String> pointer, String... groupResource){
         StringBuilder sb = new StringBuilder();
 
-        if(mode == 1 || domain.equals("")){
+        if(mode == 1 || domain == null){
             if(domain == null && groupResource.length == 0){
                 sb.append("@xnft:\n");
             }else if(domain == null && groupResource.length == 1 || domain != null && groupResource.length == 1){
@@ -384,7 +384,7 @@ public class Action implements IAction {
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(domainset);
     }
 
-    public String sanitizeHTML(String string){
+    public String sanitizeInput(String string){
         PolicyFactory policy = Sanitizers.FORMATTING.and(Sanitizers.BLOCKS);
         return policy.sanitize(string);
     }
@@ -416,8 +416,8 @@ public class Action implements IAction {
     }
 
     @Override
-    public void createNFTWallet(byte[] imageByte, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
-        createHTML(imageByte, nftName, nftAuthor, nftEmail, nftTwitter, nftDescription);
+    public void createNFTWallet(byte[] item, String name, String author, String email, String twitter, String description) throws IOException {
+        createHTML(item, name, author, email, twitter, description);
         String JSON = domainBuilder(domain);
         createDomain(10, Optional.empty(), Optional.empty());
         xummClient.postPayload(new PayloadBuilder.builder()
