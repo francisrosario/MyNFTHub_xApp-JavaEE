@@ -387,7 +387,7 @@ public class Action implements IAction {
         ObjectMapper objectMapper = ObjectMapperFactory.create();
         String hex = DatatypeConverter.printHexBinary(domain.getBytes());
         AccountSet domainset = AccountSet.builder()
-                .fee(XrpCurrencyAmount.ofDrops(12))
+                .fee(XrpCurrencyAmount.ofDrops(16))
                 .domain(hex)
                 .setFlag(AccountSet.AccountSetFlag.ACCOUNT_TXN_ID)
                 .build();
