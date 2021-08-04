@@ -28,14 +28,15 @@ public class Action implements IAction {
     private final XummClient xummClient;
     private final DeserializeIT deserializeIT;
     private final String URL = "https://xls19d-xumm-dev.herokuapp.com";
-    private String UUID;
+
+    private String Uuid;
     private String deviceType;
     private String SignInURL;
     private String issued_user_token;
-    private String domainValue = "";
+    private String domain;
 
-    public String getUUID() {
-        return UUID;
+    public String getUuid() {
+        return Uuid;
     }
 
     public void setDeviceType(String deviceType) {
@@ -60,11 +61,11 @@ public class Action implements IAction {
     private String createHTML(byte[] item, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
         StringBuilder htmlBuilder = new StringBuilder();
 
-        String nftName1 = sanitizeHTMLInput(nftName);
-        String nftAuthor1 = sanitizeHTMLInput(nftAuthor);
-        String nftEmail1 = sanitizeHTMLInput(nftEmail);
-        String nftTwitter1 = sanitizeHTMLInput(nftTwitter);
-        String nftDescription1 = sanitizeHTMLInput(nftDescription);
+        String nftName1 = sanitizeHTML(nftName);
+        String nftAuthor1 = sanitizeHTML(nftAuthor);
+        String nftEmail1 = sanitizeHTML(nftEmail);
+        String nftTwitter1 = sanitizeHTML(nftTwitter);
+        String nftDescription1 = sanitizeHTML(nftDescription);
 
         Multihash nftItem = createIPFS(item);
         String Website = "null";
@@ -332,40 +333,40 @@ public class Action implements IAction {
                 "    </script>\n" +
                 "</body></html>");
         Multihash nftHtml = createIPFS(htmlBuilder.toString().getBytes());
-        createDomainValue(2, Optional.of("ipfs"), Optional.of(String.valueOf(nftHtml)));
-        createDomainValue(2, Optional.of("ipfs"), Optional.of(String.valueOf(nftItem)));
-        createDomainValue(2, Optional.of("http"), Optional.of("https://xrptools-web-dev.herokuapp.com/"));
+        createDomain(2, Optional.of("ipfs"), Optional.of(String.valueOf(nftHtml)));
+        createDomain(2, Optional.of("ipfs"), Optional.of(String.valueOf(nftItem)));
+        createDomain(2, Optional.of("http"), Optional.of("https://xrptools-web-dev.herokuapp.com/"));
 
-        return domainValue;
+        return domain;
     }
 
-    private void createDomainValue(int modeValue, Optional<String> protocolValue, Optional<String> pointerValue, String... groupresourceValue){
+    private void createDomain(int mode, Optional<String> protocol, Optional<String> pointer, String... groupResource){
         StringBuilder sb = new StringBuilder();
 
-        if(modeValue == 1 || domainValue.equals("")){
-            if(domainValue.equals("") && groupresourceValue.length == 0){
+        if(mode == 1 || domain.equals("")){
+            if(domain == null && groupResource.length == 0){
                 sb.append("@xnft:\n");
-            }else if(domainValue.equals("") && groupresourceValue.length == 1 || !domainValue.equals("") && groupresourceValue.length == 1){
-                sb.append("@").append(groupresourceValue[0]).append(":\n");
+            }else if(domain == null && groupResource.length == 1 || domain != null && groupResource.length == 1){
+                sb.append("@").append(groupResource[0]).append(":\n");
             }
         }
 
-        if(modeValue == 2){
-            sb.append(protocolValue.get()).append(":").append(pointerValue.get()).append("\n");
-        }else if(modeValue == 10){
+        if(mode == 2){
+            sb.append(protocol.get()).append(":").append(pointer.get()).append("\n");
+        }else if(mode == 10){
             sb.setLength(0);
-            domainValue = sb.toString();
+            domain = sb.toString();
             return;
         }
-        domainValue += sb.toString();
+        domain += sb.toString();
     }
 
-    private Multihash createIPFS(byte[] dataByte) throws IOException {
+    private Multihash createIPFS(byte[] data) throws IOException {
         MerkleNode addResult = null;
         IPFS ipfs = new IPFS(System.getenv("IPFS_Multiaddress"));
         ipfs.timeout(1);
-        if (dataByte != null) {
-            NamedStreamable.ByteArrayWrapper byteArrayWrapper = new NamedStreamable.ByteArrayWrapper(" ", dataByte);
+        if (data != null) {
+            NamedStreamable.ByteArrayWrapper byteArrayWrapper = new NamedStreamable.ByteArrayWrapper(" ", data);
             addResult = ipfs.add(byteArrayWrapper).get(0);
         }
         assert addResult != null;
@@ -383,7 +384,7 @@ public class Action implements IAction {
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(domainset);
     }
 
-    public String sanitizeHTMLInput(String string){
+    public String sanitizeHTML(String string){
         PolicyFactory policy = Sanitizers.FORMATTING.and(Sanitizers.BLOCKS);
         return policy.sanitize(string);
     }
@@ -405,20 +406,20 @@ public class Action implements IAction {
             );
         }
         SignInURL = deserializeIT.Payload(postPayloadResponse).getAlways();
-        UUID = deserializeIT.Payload(postPayloadResponse).getUuid();
+        Uuid = deserializeIT.Payload(postPayloadResponse).getUuid();
     }
 
     @Override
     public void checkAuthentication() throws IOException {
-        String getPayloadResponse = xummClient.getPayload(UUID);
+        String getPayloadResponse = xummClient.getPayload(Uuid);
         issued_user_token = deserializeIT.getPayload(getPayloadResponse).getIssued_user_token();
     }
 
     @Override
     public void createNFTWallet(byte[] imageByte, String nftName, String nftAuthor, String nftEmail, String nftTwitter, String nftDescription) throws IOException {
         createHTML(imageByte, nftName, nftAuthor, nftEmail, nftTwitter, nftDescription);
-        String JSON = domainBuilder(domainValue);
-        createDomainValue(10, Optional.empty(), Optional.empty());
+        String JSON = domainBuilder(domain);
+        createDomain(10, Optional.empty(), Optional.empty());
         xummClient.postPayload(new PayloadBuilder.builder()
                 .expire(60)
                 .userToken(issued_user_token)

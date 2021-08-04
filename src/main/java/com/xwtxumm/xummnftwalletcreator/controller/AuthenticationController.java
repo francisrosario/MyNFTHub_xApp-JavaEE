@@ -32,7 +32,7 @@ public class AuthenticationController extends HttpServlet {
             System.out.println(request.getParameter("xAppToken"));
 
             x.processAuthentication();
-            System.out.println(x.getUUID());
+            System.out.println(x.getUuid());
             response.sendRedirect(x.getSignInURL());
         }else{
             Action x = (Action)httpSession.getAttribute("xumm");
