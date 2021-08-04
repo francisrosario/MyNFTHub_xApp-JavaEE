@@ -25,7 +25,7 @@ public class AuthenticationController extends HttpServlet {
             if(request.getLocalName().contains("localhost")){
                 x.setURL(request.getRequestURL().toString());
             }else{
-                x.setURL("https://"+request.getLocalName());
+                x.setURL("https://"+request.getRemoteHost());
             }
 
             //Detect If Smartphone / Personal computer
